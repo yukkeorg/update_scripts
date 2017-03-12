@@ -1,0 +1,5 @@
+#!/bin/sh
+TMPFILE='/tmp/skypeforlinux.deb'
+trap "rm -f ${TMPFILE}" EXIT
+curl -L -k -o ${TMPFILE} https://go.skype.com/skypeforlinux-64-alpha.deb
+sudo dpkg -i ${TMPFILE}

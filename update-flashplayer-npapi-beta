@@ -1,0 +1,16 @@
+#!/bin/sh
+
+FPDLURL="https://fpdownload.macromedia.com/pub/labs/flashruntimes/flashplayer/linux64/flash_player_npapi_linux.x86_64.tar.gz"
+INSTALLDIR="/usr/lib/flashplugin-nonfree"
+
+workdir=$(mktemp -d)
+_cleanup() {
+    rm -rf ${workdir}
+}
+trap "_cleanup" EXIT
+
+cd ${workdir}
+curl -# -L "$FPDLURL" | tar xzf -
+[ ! -d "${INSTALLDIR}" ] && mkdir -p "${INSTALLDIR}"
+[ -f libflashplayer.so ] && sudo install -v --backup=simple libflashplayer.so "${INSTALLDIR}"
+[ -d usr ] && sudo install -v usr /

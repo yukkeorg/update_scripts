@@ -1,0 +1,6 @@
+#!/bin/bash
+SCRIPTDIR=$(cd -P $(dirname "$0"); pwd -P)
+. $SCRIPTDIR/_dpkginst.sh
+
+debinstall "VSCode" "https://go.microsoft.com/fwlink/?LinkID=760868"
+
